@@ -1,0 +1,47 @@
+.controls {
+  background: var(--color-s1-bg);
+  border-top: 0.25rem solid var(--color-accent);
+  padding-block: 2.5rem;
+  width: 100%;
+  grid-column: 1 / 12;
+}
+
+.facets {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+@media only screen and (min-width: 1024px) {
+  .facets {
+    flex-direction: row;
+    align-items: end;
+    gap: 1rem;
+  }
+}
+
+.facet {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.facet select,
+.facet input {
+  height: 3.5rem;
+  display: inline-flex;
+  align-items: center;
+  background: #ffffff;
+  border: 2px solid var(--color-text);
+  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
+  font-size: clamp(1rem, 0.849rem + 0.431vi, 1.125rem);
+  line-height: 2rem;
+  font-weight: 400;
+  font-family: Inter, sans-serif;
+  color: var(--linkDefault);
+  line-height: 1;
+}
+.facet input:hover {
+  color: var(--link-hover);
+}

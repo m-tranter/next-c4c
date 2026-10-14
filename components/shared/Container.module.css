@@ -1,0 +1,13 @@
+@media only screen and (min-width: 768px) {
+  .containerFull .container {
+    align-items: center;
+    gap: 2.5rem;
+  }
+}
+
+@media only screen and (max-width: 1188px) {
+  .containerFull .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}

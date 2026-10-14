@@ -1,0 +1,31 @@
+.alert {
+  background-color: #d4351c;
+  color: #fff;
+}
+.info {
+  background-color: #43ccc1;
+  color: #212529;
+}
+.warning {
+  background-color: #f5b223;
+  color: #212529;
+}
+.sympathy {
+  background-color: #000;
+  color: #fff;
+}
+
+.button:focus {
+  box-shadow:
+    #ffffff 0 0 0 2px,
+    0 0 0 5px;
+}
+
+.content {
+  font-size: clamp(0.875rem, 0.724rem + 0.431vi, 1rem);
+}
+
+.alertTitle {
+  font-size: clamp(1.125rem, 0.974rem + 0.431vi, 1.25rem);
+  line-height: 2rem;
+}

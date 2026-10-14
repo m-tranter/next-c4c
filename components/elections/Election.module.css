@@ -1,0 +1,17 @@
+.legend {
+  width: 1rem;
+  height: 1rem;
+  display: inline-block;
+}
+
+.legendwrapper {
+  font-size: 0.8rem;
+}
+
+.nums td:not(:first-of-type) {
+  text-align: right;
+}
+
+.navigation {
+  padding-left: 0.5rem !important;
+}

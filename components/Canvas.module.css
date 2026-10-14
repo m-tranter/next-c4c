@@ -1,0 +1,35 @@
+.callout:not(:first-child),
+.contacts:not(:first-child),
+.figure:not(:first-child),
+.prism:not(:first-child),
+.assets:not(:first-child),
+.app-store:not(:first-child) {
+  margin-top: 2.5rem;
+}
+
+.callout + *,
+.contacts + *,
+.figure + *,
+.prism + *,
+.assets + *,
+.app-store + * {
+  margin-top: 2.5rem;
+}
+
+.quote:not(:first-child),
+.accordion:not(:first-child),
+.table-wrap:not(:first-child),
+.table-wrap + *:not(:first-child) {
+  margin-top: 4rem;
+}
+
+.quote + *,
+.accordion + *,
+.table-wrap + *,
+.table-wrap + * + * {
+  margin-top: 4rem;
+}
+
+.button:has(+ .button) {
+  margin-right: 1rem;
+}

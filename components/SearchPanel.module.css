@@ -1,0 +1,138 @@
+/* ─── Wrapper ──────────────────────────────────────────────────────────────── */
+
+.wrapper {
+  padding-block: 2.5rem 4rem;
+  /* Mobile: scrollable full-height panel minus header height */
+  height: calc(100svh - 4rem);
+  overflow-y: auto;
+}
+
+@media only screen and (min-width: 1024px) {
+  .wrapper {
+    height: auto;
+    box-shadow: 0px 8px 8px -8px rgba(0, 48, 120, 0.1);
+  }
+}
+
+/* ─── Search form ──────────────────────────────────────────────────────────── */
+
+.searchForm {
+  display: grid;
+  gap: 1.5rem;
+  max-width: 700px;
+}
+
+@media only screen and (min-width: 1024px) {
+  .searchForm {
+    max-width: 956px;
+  }
+}
+
+.searchLabel {
+  font-size: clamp(1.5rem, 0.897rem + 1.724vi, 2rem);
+  line-height: clamp(2rem, 1.397rem + 1.724vi, 2.5rem);
+  font-weight: 700;
+  font-family: var(--font-heading, Inter, sans-serif);
+  color: var(--color-s1-title, #0b0c0c);
+}
+
+/* Input + button in a bordered row */
+.searchFields {
+  display: grid;
+  grid-template-columns: 1fr 3rem;
+  border: 2px solid var(--color-s1-text, #0b0c0c);
+  border-radius: 0.25rem;
+  background: var(--color-s1-bg, #fff);
+  color: var(--color-s1-text, #0b0c0c);
+}
+
+.searchFields > * {
+  height: 3rem;
+  border: 0;
+  background: none;
+}
+
+@media only screen and (min-width: 1024px) {
+  .searchFields {
+    grid-template-columns: 1fr 3.5rem;
+  }
+
+  .searchFields > * {
+    height: 3.5rem;
+  }
+}
+
+.searchInput {
+  border-radius: 0.25rem 0 0 0.25rem;
+  padding: 0.5rem;
+  font-size: clamp(0.875rem, 0.724rem + 0.431vi, 1rem);
+  line-height: 1.5rem;
+  font-weight: 400;
+  font-family: var(--font-body, Inter, sans-serif);
+  color: var(--color-s1-text, #0b0c0c);
+  background: transparent;
+  width: 100%;
+}
+
+@media only screen and (min-width: 1024px) {
+  .searchInput {
+    padding: 1rem;
+  }
+}
+
+/* Remove default search styling */
+.searchInput::-webkit-search-decoration,
+.searchInput::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
+/* Focus ring scoped to inside the bordered wrapper */
+.searchInput:focus,
+.searchInput:focus-visible,
+.searchSubmit:focus,
+.searchSubmit:focus-visible {
+  outline: 0;
+  box-shadow: none;
+}
+
+.searchFields:focus-within {
+  outline: 0;
+  box-shadow:
+    var(--color-s1-bg, #fff) 0px 0px 0px 2px,
+    var(--color-focus, #000) 0px 0px 0px 5px;
+}
+
+.searchSubmit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 0.25rem 0.25rem 0;
+  cursor: pointer;
+  color: var(--color-s1-text, #0b0c0c);
+  transition: color 0.2s ease-in-out;
+  padding: 0;
+}
+
+.searchSubmit:hover,
+.searchSubmit:focus {
+  color: var(--color-s1-link, #185b95);
+}
+
+/* ─── Popular tasks pill group ─────────────────────────────────────────────── */
+
+.pillsGroup {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+  max-width: 700px;
+}
+
+@media only screen and (min-width: 1024px) {
+  .pillsGroup {
+    max-width: 956px;
+  }
+}
+
+.pillsHeading {
+  color: var(--color-s1-title, #0b0c0c);
+}

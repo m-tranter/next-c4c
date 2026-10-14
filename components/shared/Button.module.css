@@ -1,0 +1,100 @@
+/* Button component styles - migrated from styled components */
+
+.button {
+  font-size: clamp(0.875rem, 0.724rem + 0.431vi, 1rem);
+  line-height: 1.2;
+  font-weight: 500;
+  font-family: var(--font-body, Inter, sans-serif);
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.25rem;
+  border: 0;
+  display: inline-flex;
+  gap: 0.25rem;
+  padding: 0.875rem;
+  text-decoration: none !important;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.button.variant1 {
+  background: #ffffff;
+  color: #0b0c0c !important;
+}
+
+.button.variant1:hover,
+.button.variant1:focus {
+  background: #e6e6e6;
+  color: #0b0c0c !important;
+}
+
+.button.variant1:hover[disabled],
+.button.variant1:focus[disabled] {
+  background: #ffffff;
+  color: #0b0c0c !important;
+}
+
+.button.variant2 {
+  background: #206c49;
+  color: #ffffff !important;
+}
+
+.button.variant2:hover,
+.button.variant2:focus {
+  background: #14452e;
+  color: #ffffff !important;
+}
+
+.button.variant2:hover[disabled],
+.button.variant2:focus[disabled] {
+  background: #206c49;
+  color: #ffffff !important;
+}
+
+.button.variantWhite {
+  background: #ffffff;
+  color: #0b0c0c !important;
+}
+
+.button.variantWhite:hover,
+.button.variantWhite:focus {
+  background: #e6e6e6;
+  color: #0b0c0c !important;
+}
+
+.button.variantWhite:hover[disabled],
+.button.variantWhite:focus[disabled] {
+  background: #ffffff;
+  color: #0b0c0c !important;
+}
+
+.button.variantSystem {
+  background: var(--color-bg, #f2eff8);
+  color: #0b0c0c !important;
+}
+
+.button.variantSystem:hover,
+.button.variantSystem:focus {
+  background: color-mix(in srgb, var(--color-bg, #f2eff8) 85%, #000);
+  color: #0b0c0c !important;
+}
+
+.button.variantSystem:hover[disabled],
+.button.variantSystem:focus[disabled] {
+  background: var(--color-bg, #f2eff8);
+  color: #0b0c0c !important;
+}
+
+.button.withIcon {
+  justify-content: space-between;
+}
+
+.button[disabled] {
+  cursor: default;
+}
+
+@media print {
+  .button {
+    color: #000;
+  }
+}

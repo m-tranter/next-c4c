@@ -1,0 +1,95 @@
+@import 'tailwindcss';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+*:focus {
+  outline: 0;
+  box-shadow:
+    #ffffff 0px 0px 0px 2px,
+    #000 0px 0px 0px 5px;
+}
+
+*:focus {
+  outline: 0;
+  box-shadow: none;
+}
+*:focus-visible {
+  outline: 0;
+  box-shadow:
+    #ffffff 0px 0px 0px 2px,
+    #000 0px 0px 0px 5px;
+}
+
+#root,
+#app-root,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  min-height: 100svh;
+  text-rendering: auto;
+  font-size: clamp(1rem, 0.849rem + 0.431vi, 1.125rem);
+  line-height: 2rem;
+  font-weight: 400;
+}
+html {
+  scrollbar-gutter: stable;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+iframe {
+  border: 0;
+  max-width: 100%;
+}
+button {
+  cursor: pointer;
+}
+
+.sr-only,
+.visually-hidden {
+  -webkit-clip: rect(0 0 0 0);
+  clip: rect(0 0 0 0);
+  -webkit-clip-path: inset(50%);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+/* Flow utility for consistent spacing */
+.flow > * + * {
+  margin-top: var(--flow, 1rem);
+}
+
+.skip-alert {
+  background-color: #d4351c;
+  color: #fff;
+}
+.skip-info {
+  background-color: #43ccc1;
+}
+
+.skip-warning {
+  background-color: #f5b223;
+}
+.skip-sympathy {
+  background-color: #000;
+  color: #fff;
+}
+main {
+  /* display: none; */
+}
+img {
+  max-width: 100% !important;
+}
+:root {
+  --page-max: 1188px;
+}

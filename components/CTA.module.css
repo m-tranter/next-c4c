@@ -1,0 +1,44 @@
+/* CTA component styles - migrated from styled components */
+
+.ctaContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media only screen and (min-width: 768px) {
+  .ctaContent {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.ctaText {
+  flex: 1;
+}
+
+.ctaText h3 {
+  font-size: clamp(1.5rem, 0.897rem + 1.724vi, 2rem);
+  line-height: clamp(2rem, 1.397rem + 1.724vi, 2.5rem);
+  font-weight: 700;
+  font-family: var(--font-heading, Inter, sans-serif);
+  color: var(--color-title, #202427);
+  margin: 0;
+}
+
+.ctaText p {
+  font-size: clamp(1rem, 0.849rem + 0.431vi, 1.125rem);
+  line-height: 2rem;
+  font-weight: 400;
+  font-family: var(--font-body, Inter, sans-serif);
+  color: var(--color-text, #212529);
+  margin-top: 0.5rem;
+}
+
+@media print {
+  .wrapper {
+    background: transparent;
+    border: 1px solid #666;
+  }
+}

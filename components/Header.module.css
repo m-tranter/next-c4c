@@ -1,0 +1,176 @@
+.mainHeader:not(.open) .headerToolsToggle:focus {
+  outline: 0;
+  box-shadow:
+    #fff 0px 0px 0px 2px,
+    #000 0px 0px 0px 5px;
+}
+
+@supports (--css: variables) {
+  .mainHeader:not(.open) .headerToolsToggle:focus {
+    outline: 0;
+    box-shadow: none;
+  }
+
+  .mainHeader:not(.open) .headerToolsToggle:focus-visible {
+    outline: 0;
+    box-shadow:
+      #fff 0px 0px 0px 2px,
+      #000 0px 0px 0px 5px;
+  }
+}
+
+.headerTop {
+  border-block: 0.375rem solid transparent;
+}
+
+.headerTopPanelOpen {
+  padding-bottom: 0.375rem;
+  border-bottom: 0.375rem solid #fff;
+}
+
+@media only screen and (min-width: 1024px) {
+  .navPanel {
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: 0px 8px 8px -8px rgba(0, 48, 120, 0.1);
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .headerTop {
+    height: auto;
+  }
+
+  .headerTopPanelOpen {
+    border-bottom-width: 0.5rem;
+  }
+}
+
+.headerToolsToggle {
+  font-size: clamp(0.875rem, 0.724rem + 0.431vi, 1rem);
+  line-height: 1.5rem;
+  font-weight: 500;
+  font-family: Inter, sans-serif;
+  border: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.75rem;
+  background: transparent;
+  color: #000;
+  position: relative;
+  transition: all 0.2s ease-in-out;
+  z-index: 101;
+}
+
+@media only screen and (min-width: 768px) {
+  .headerToolsToggle {
+    padding: 1rem;
+  }
+}
+
+.headerToolsToggle:hover {
+  border-color: #000;
+}
+
+.headerToolsToggleOpen {
+  color: #212529;
+}
+
+.headerToolsDivider {
+  height: 2rem;
+  margin-block: auto;
+  width: 1px;
+  background: #000;
+  transition: all 0.2s ease-in-out;
+}
+
+.headerToolsDividerShow {
+  background: #212529;
+}
+
+.navPanel {
+  width: 100%;
+  top: 100%;
+  z-index: -1;
+  height: 0;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.navPanelOpen {
+  z-index: 100;
+  height: auto;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Logo link styles from sampleCss.css - fpvHoo class */
+.logoLink {
+  display: block;
+  max-width: 12.5rem;
+  height: 2.75rem;
+}
+
+@media only screen and (min-width: 768px) {
+  .logoLink {
+    max-width: 12.5rem;
+    height: 5.5rem;
+    margin-block: 1rem;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .logoLink {
+    max-width: 18.75rem;
+  }
+}
+
+.logoLink.focusStyles:focus {
+  outline: 0;
+  box-shadow:
+    #fff 0px 0px 0px 2px,
+    #000 0px 0px 0px 5px;
+}
+
+@supports (--css: variables) {
+  .logoLink.focusStyles:focus {
+    outline: 0;
+    box-shadow: none;
+  }
+
+  .logoLink.focusStyles:focus-visible {
+    outline: 0;
+    box-shadow:
+      #fff 0px 0px 0px 2px,
+      #000 0px 0px 0px 5px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .logoLink.headerLogo {
+    margin-block: 1rem;
+  }
+}
+
+.logoLink.headerLogo img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: left;
+}
+
+@media print {
+  .mainHeader {
+    background: transparent;
+  }
+
+  .headerTools {
+    display: none;
+  }
+
+  .logoLink.headerLogo img {
+    filter: invert(100%);
+  }
+}

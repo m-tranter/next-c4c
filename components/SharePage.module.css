@@ -1,0 +1,49 @@
+/* Style the dialog element itself */
+.myModal {
+  padding: 24px;
+  border: none;
+  border-radius: 12px;
+  background-color: #ffffff;
+  color: #1f2937;
+  box-shadow:
+    0 10px 25px -5px rgba(0, 0, 0, 0.1),
+    0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 320px;
+  width: 90%;
+
+  /* Reset default user-agent margins to allow native centering */
+  margin: auto;
+}
+
+/* Style the text paragraph inside */
+.myModal p {
+  margin: 0 0 20px 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+/* Style the close button */
+.myModal button {
+  background-color: var(--color-s2-bg);
+  color: #ffffff;
+  border: none;
+  padding: 8px 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.myModal button:hover {
+  opacity: 0.85;
+}
+
+/* Style the native dimming overlay behind the modal */
+.myModal::backdrop {
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px); /* Modern frosted-glass effect */
+}

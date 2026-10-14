@@ -1,0 +1,24 @@
+.details {
+  border-bottom: 1px solid #206c4940;
+  margin-bottom: 1rem;
+  background-color:;
+}
+
+.summary {
+  border-bottom: 1px solid var(--cec-green);
+  color: #0b0c0c;
+  font-size: inherit;
+  background: #ecf3ec;
+  padding: 0 10px;
+  font-weight: 700;
+  line-height: 32px;
+  display: block;
+}
+
+.summary:hover {
+  background: #c0d8c0;
+}
+
+.summary p {
+  font-size: 1.5rem;
+}

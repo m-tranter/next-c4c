@@ -1,0 +1,245 @@
+import { XMLParser } from "fast-xml-parser";
+
+// XML Parser configuration
+const parser = new XMLParser({
+  ignoreAttributes: true,
+  parseTagValue: true,
+  trimValues: true,
+  isArray: () => false,
+});
+
+let user: string | null = null;
+let password: string | null = null;
+let url: string | null = null;
+
+const council = "Cheshire East";
+
+// Cache for roadworks data
+let cache = { error: false, date: undefined, items: [] as RoadworkItem[] };
+
+// Fetch the One Network credentials from Contensis
+async function getOneNetworkCredentials() {
+  if (!user || !password || !url) {
+    try {
+      const data = await fetch(
+        "https://www.cheshireeast.gov.uk/cec-api/additional-info",
+        {
+          method: "post",
+          body: { action: "get-pwd", label: "one-network" },
+        },
+      );
+      url = `https://datacloud.one.network/?app_key=${data.api}`;
+      password = data.pwd;
+      user = data.user;
+    } catch (err) {
+      console.error("Failed to fetch One Network credentials:", err);
+      throw err;
+    }
+  }
+  return { user, password, url };
+}
+
+// Flatten, strip council suffix, and remove strings that are a prefix of a longer entry.
+const dedup = (arr: string[]): string[] => {
+  arr = arr.flat().map((e) => e.replace(`, ${council}`, ""));
+  const result: string[] = [];
+  for (const l of arr) {
+    if (arr.some((el) => el !== l && el.startsWith(l))) continue;
+    if (!result.includes(l)) result.push(l);
+  }
+  return result;
+};
+
+// Drop single-word entries from description arrays.
+const dedupDesc = (arr: string[]): string[] =>
+  arr.reduce(
+    (acc, e) => (e.split(" ").length === 1 ? acc : [...acc, initialCap(e)]),
+    [],
+  );
+
+const initialCap = (str: string | undefined | null): string =>
+  str?.length
+    ? `${str[0].toUpperCase()}${str.slice(1).replace("\r\n", " ")}`
+    : "";
+
+const makeCache = (
+  error: boolean,
+  date: string | undefined,
+  items: RoadworkItem[],
+) => ({
+  error,
+  date,
+  items,
+});
+
+const getLoc = (name: any[]): string[] => {
+  const other = name.find((e) => e.tpegOtherPointDescriptorType === "other");
+  const area = name.find((e) => e.tpegOtherPointDescriptorType === "areaName");
+  const linkName = name.find(
+    (e) => e.tpegOtherPointDescriptorType === "linkName",
+  );
+
+  if (other) return [other.descriptor.values.value];
+
+  if (linkName) {
+    const loc = [linkName?.descriptor?.values?.value];
+    if (area) {
+      const areaName = area.descriptor?.values?.value;
+      if (areaName)
+        loc[0] = `${loc[0]}, ${areaName.replace("Ward", "").trim()}`;
+      return loc;
+    }
+    return ["None"];
+  }
+
+  return ["None"];
+};
+
+const loc = (obj: any): string[] => {
+  const group = obj.groupOfLocations;
+  const tpeg = group?.tpegPointLocation?.point?.name;
+  const itinerary = group?.locationContainedInItinerary;
+  const linear = group?.tpegLinearLocation;
+
+  if (tpeg) return getLoc(tpeg);
+  if (itinerary?.[0]?.location?.tpegPointLocation?.point?.name)
+    return getLoc(itinerary[0].location.tpegPointLocation.point.name);
+  return linear?.from?.name ? getLoc(linear.from.name) : ["None"];
+};
+
+// Types for roadworks data
+export interface RoadworkItem {
+  id: string;
+  severity: string;
+  startDate: string | undefined;
+  endDate: string | undefined;
+  impact: string | undefined;
+  url: string | undefined;
+  responsible: string | undefined;
+  management: string | undefined;
+  extra: string;
+  worksCat: string | undefined;
+  worksState: string | undefined;
+  description: string;
+  locations: string;
+}
+
+// Details class to extract information from situation record
+class Details {
+  constructor(obj: any) {
+    this.id = obj.situationRecordCreationReference || "";
+    this.severity = initialCap(obj.severity) || "";
+    this.startDate = obj.validity?.validityTimeSpecification?.overallStartTime;
+    this.endDate = obj.validity?.validityTimeSpecification?.overallEndTime;
+    this.impact = obj.impact?.delays?.delaysType;
+    this.url = obj.urlLink?.urlLinkAddress;
+    this.responsible =
+      obj.situationRecordExtension?.situationRecordExtended?.responsibleOrganisation?.responsibleOrganisationName;
+    this.management = obj.generalNetworkManagementType || "";
+    this.extra = obj.nonGeneralPublicComment?.comment?.values?.value || "";
+    this.worksCat =
+      obj.situationRecordExtension?.situationRecordExtended?.worksCategory
+        ?.description || "";
+    this.worksState =
+      obj.situationRecordExtension?.situationRecordExtended?.worksState
+        ?.description || "";
+
+    const comment = obj.generalPublicComment?.comment?.values?.value;
+    this.description = Array.isArray(comment)
+      ? dedupDesc(comment.map((e) => initialCap(e))).join("^#")
+      : initialCap(comment);
+  }
+}
+
+// Item class to process each situation record
+class Item {
+  constructor(obj: any) {
+    const rec = obj.situationRecord;
+    if (Array.isArray(rec)) {
+      this.locations = dedup(rec.map((e) => loc(e))).join("^#");
+      Object.assign(this, new Details(rec[0]));
+    } else {
+      this.locations = loc(rec).join("^#");
+      Object.assign(this, new Details(rec));
+    }
+  }
+}
+
+// Main fetch function
+async function fetchRoadworksData() {
+  try {
+    const { user, password, url } = await getOneNetworkCredentials();
+
+    if (!user || !password || !url) {
+      throw new Error("Missing One Network credentials");
+    }
+
+    const data = await fetch(url, {
+      headers: {
+        Authorization: "Basic " + btoa(`${user}:${password}`),
+        "Content-Type": "application/xml; charset=utf-8",
+      },
+    });
+
+    const soap =
+      parser.parse(data)["SOAP-ENV:Envelope"]["SOAP-ENV:Body"].d2LogicalModel
+        .payloadPublication;
+    const date = soap.publicationTime;
+
+    // Check cache
+    if (cache.date === date) {
+      console.log("Using cached roadworks data.");
+      return cache;
+    }
+
+    console.log(
+      `Roadworks data updated: ${new Date(date).toLocaleString("en-GB")}`,
+    );
+
+    const myItems: RoadworkItem[] = [];
+    for (const sit of soap.situation ?? []) {
+      const item = new Item(sit);
+      // Avoid duplicates by ID
+      if (!myItems.some((e) => e.id === item.id)) {
+        myItems.push(item);
+      }
+    }
+
+    cache = makeCache(false, date, myItems);
+    return cache;
+  } catch (err) {
+    console.error("fetchRoadworksData error:", err);
+    if (!cache.date) {
+      cache = makeCache(true, undefined, []);
+    }
+    return cache;
+  }
+}
+
+// Initialize credentials and start periodic updates
+async function initializeRoadworksService() {
+  try {
+    await getOneNetworkCredentials();
+    await fetchRoadworksData();
+    // Update every 5 minutes
+    setInterval(fetchRoadworksData, 5 * 60 * 1000);
+  } catch (err) {
+    console.error("Failed to initialize roadworks service:", err);
+  }
+}
+
+// Start initialization (but don't await to avoid blocking)
+initializeRoadworksService().catch(console.error);
+
+// Main handler for Next.js API route
+export default defineEventHandler(async (event) => {
+  // Ensure we have fresh data if cache is empty or old
+  if (
+    !cache.date ||
+    Date.now() - new Date(cache.date).getTime() > 10 * 60 * 1000
+  ) {
+    await fetchRoadworksData();
+  }
+  return cache;
+});
+

@@ -1,0 +1,33 @@
+{
+  "name": "nextjs-block",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "build:standalone": "next build --webpack && mkdir -p .next/standalone/public/static .next/standalone/.next/static && cp -r .next/static/. .next/standalone/public/static/ && cp -r public/. .next/standalone/public/ && cp -r .next/static/. .next/standalone/.next/static/ && sh scripts/patch-standalone.sh",
+    "start:standalone": "bun --bun .next/standalone/server.js",
+    "start": "next start -p 3001"
+  },
+  "dependencies": {
+    "@contensis/canvas-html": "^1.3.0",
+    "@contensis/canvas-react": "^1.3.2",
+    "@contensis/forms": "^1.0.4",
+    "chartjs": "^0.3.24",
+    "chartjs-plugin-datalabels": "^2.2.0",
+    "contensis-delivery-api": "^1.6.2",
+    "fast-xml-parser": "^5.7.3",
+    "next": "^16.4.0",
+    "react": "^19",
+    "react-dom": "^19"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^24",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/react-helmet": "^6.1.11",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}

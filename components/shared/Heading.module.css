@@ -1,0 +1,59 @@
+/* Focus styles for header buttons */
+.mainHeader:not(.open) .headerToolsToggle:focus {
+  outline: 0;
+  box-shadow:
+    #fff 0px 0px 0px 2px,
+    #000 0px 0px 0px 5px;
+}
+
+@supports (--css: variables) {
+  .mainHeader:not(.open) .headerToolsToggle:focus {
+    outline: 0;
+    box-shadow: none;
+  }
+
+  .mainHeader:not(.open) .headerToolsToggle:focus-visible {
+    outline: 0;
+    box-shadow:
+      #fff 0px 0px 0px 2px,
+      #000 0px 0px 0px 5px;
+  }
+}
+
+@media print {
+  .mainHeader {
+    background: transparent;
+  }
+
+  .headerTools {
+    display: none;
+  }
+
+  .logoLink.headerLogo img {
+    filter: invert(100%);
+  }
+}
+
+.h1 {
+  font-size: clamp(2.25rem, 0.741rem + 4.31vi, 3.5rem);
+  line-height: clamp(3rem, 1.793rem + 3.448vi, 4rem);
+  font-weight: 700;
+  font-family: var(--font-heading);
+  color: var(--color-title);
+}
+
+.h3 {
+  font-size: 1.25rem;
+  line-height: clamp(1.5rem, 0.897rem + 1.724vi, 2rem);
+  font-weight: 700;
+  font-family: var(--font-heading);
+  color: var(--color-s1-title);
+}
+
+.h5 {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 700;
+  font-family: var(--font-heading);
+  color: var(--color-s1-title);
+}

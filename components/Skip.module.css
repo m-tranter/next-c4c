@@ -1,0 +1,18 @@
+.skip:focus {
+  margin: inherit;
+  clip: auto;
+  clip-path: none;
+  white-space: inherit;
+}
+.skip:focus-visible {
+  box-shadow: #000 0 0 0 3px inset;
+}
+
+.skip {
+  color: var(--color-s1-link-hover);
+  background-color: white;
+  font-size: clamp(0.75rem, 0.599rem + 0.431vi, 0.875rem);
+  clip-path: inset(50%);
+  text-underline-offset: 0.15em;
+  padding: 0.5rem 1rem;
+}

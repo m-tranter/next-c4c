@@ -1,0 +1,71 @@
+/* ContactDetails component styles - migrated from styled components */
+
+.card {
+  background: #ffffff;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  padding: 1rem 0.5rem;
+  border: 1px solid #1d70b8;
+  border-radius: 0.25rem;
+}
+
+@media only screen and (min-width: 560px) {
+  .card {
+    padding: 1.5rem 1rem;
+  }
+}
+
+.cardHeading {
+  margin: 0;
+}
+
+.cardHeading + *:not(.cardSection),
+.cardText + *:not(.cardSection) {
+  margin-top: 1rem;
+}
+
+.cardHeading + .cardSection,
+.cardHeading + .socialLinks,
+.cardText + .cardSection,
+.cardText + .socialLinks {
+  margin-top: 1.5rem;
+}
+
+.sectionItem {
+  display: grid;
+}
+
+.cardSection,
+.socialLinks {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #222256;
+}
+
+.container {
+  max-width: 600px;
+}
+.cardSection {
+  display: grid;
+  grid-template-columns: 2.5rem auto;
+}
+
+.sectionContent {
+  margin-left: 0.5rem;
+}
+
+.sectionLabel {
+  font-weight: 500;
+}
+
+.sectionLink {
+  color: #185b95;
+  text-decoration: none;
+}
+
+.sectionLink:hover,
+.sectionLink:focus {
+  color: #003078;
+  text-decoration: underline;
+  text-underline-offset: 0.25rem;
+}

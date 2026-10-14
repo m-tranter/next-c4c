@@ -1,0 +1,9 @@
+@media (min-width: 992px) {
+  .collapsible.overflows:not(.expanded) {
+    overflow: hidden;
+    max-height: calc(clamp(190px, 16vw, 250px) - 40px);
+  }
+  .collapsible.expanded {
+    overflow: visible;
+  }
+}

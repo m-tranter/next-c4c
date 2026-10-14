@@ -1,0 +1,107 @@
+.promotional {
+  & h2,
+  & h3,
+  & h4,
+  & h5,
+  & h6 {
+    text-align: center !important;
+    margin-bottom: 1.5rem !important;
+    font-family: 'Open Sans' !important;
+    font-stretch: ultra-condensed !important;
+  }
+  & img {
+    margin: auto;
+  }
+}
+.promotional {
+  background-color: var(--promo-bg);
+}
+
+@media (max-width: 768px) {
+  .promoPWrap {
+  }
+}
+
+@media (max-width: 640px) {
+  .promotional {
+    background-color: transparent;
+    padding: 0;
+  }
+  .promotional .container {
+    margin: 0;
+    padding: 0;
+    max-width: none;
+  }
+}
+
+.promo {
+  box-shadow: 1px 4px 15px 0 rgb(0 0 0 / 15%);
+  border-radius: 4px;
+  margin: -20px auto;
+  padding: 2rem 2.5rem;
+  background-color: #fff;
+  & img {
+    margin: auto;
+  }
+}
+
+.promo_p {
+  font-family: 'Open Sans' !important;
+  font-stretch: ultra-condensed !important;
+  font-weight: 700;
+  font-size: clamp(1.5rem, 0.897rem + 1.724vi, 2rem);
+  text-align: center;
+  margin-top: 0 !important;
+}
+
+/* @media (min-width: 1200px) { */
+/* .promo:before { */
+/*   content: ''; */
+/*   display: block; */
+/*   position: absolute; */
+/*   z-index: 1; */
+/*   top: 35%; */
+/*   width: 40%; */
+/*   height: 40%; */
+/*   background-image: url('/images/non_user/svg/columns-gap.svg'); */
+/*   background-repeat: no-repeat; */
+/*   background-size: 100% 100%; */
+/*   left: -20rem; */
+/*   opacity: 0.1; */
+/*   transform: rotate(45deg); */
+/* } */
+
+/* .promo:after { */
+/*   content: ''; */
+/*   display: block; */
+/*   position: absolute; */
+/*   z-index: 1; */
+/*   top: 35%; */
+/*   width: 40%; */
+/*   height: 40%; */
+/*   background-image: url('/images/non_user/svg/columns-gap.svg'); */
+/*   background-repeat: no-repeat; */
+/*   background-size: 100% 100%; */
+/*   right: -20rem; */
+/*   opacity: 0.1; */
+/*   transform: rotate(45deg); */
+/* } */
+/* } */
+
+.cols {
+  & ul li {
+    list-style: none;
+    padding-left: 2.5rem;
+    position: relative;
+  }
+  & ul li::before {
+    content: '';
+    position: absolute;
+    background-color: var(--color-s2-bg);
+    mask: url('/asset-library/svg/tick-check.svg') no-repeat center / contain;
+    left: 0;
+    top: 0.1rem;
+    width: 2rem;
+    height: 2rem;
+  }
+}

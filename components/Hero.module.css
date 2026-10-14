@@ -1,0 +1,62 @@
+/* Hero specific styles that can't be easily done with Tailwind */
+
+.breadcrumb-list {
+  font-size: clamp(0.875rem, 0.724rem + 0.431vi, 1rem);
+  line-height: 1.5rem;
+  gap: 0.5rem;
+}
+
+.breadcrumb-item {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.wrapper .heroContent:has(.breadcrumb) {
+  padding-block: 0.875rem 2.5rem;
+}
+
+.heroContentDescription {
+  font-size: clamp(1.125rem, 0.974rem + 0.431vi, 1.25rem);
+  line-height: 2rem;
+}
+
+@media only screen and (min-width: 1024px) {
+  .wrapper .heroContent {
+    padding-block: 1.5rem 4rem;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 2.75rem;
+  }
+
+  .wrapper .heroContent:has(.breadcrumb) {
+    padding-block: 0.875rem 4rem;
+  }
+
+  .wrapper .heroContent > * {
+    grid-column: 1 / 13;
+  }
+
+  .wrapper .heroContent > .heading,
+  .wrapper .heroContent > .heroContentDescription {
+    grid-column: 1 / 9;
+  }
+}
+
+@media print {
+  .wrapper {
+    background: transparent;
+  }
+
+  .wrapper .heroContent {
+    padding: 0;
+  }
+
+  .wrapper .heroImage {
+    display: none;
+  }
+
+  .breadcrumb {
+    display: none;
+  }
+}

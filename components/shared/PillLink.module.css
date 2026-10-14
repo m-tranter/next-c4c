@@ -1,0 +1,23 @@
+.link {
+  font-size: clamp(0.875rem, 0.724rem + 0.431vi, 1rem);
+  line-height: 1.5rem;
+  font-weight: 400;
+  font-family: var(--font-body);
+  background: var(--color-bg);
+  border-radius: 0.25rem;
+  color: var(--color-text);
+  display: inline-block;
+  padding: 0.375rem 0.75rem;
+  text-decoration: none;
+  transition:
+    background 0.2s ease-in-out,
+    color 0.2s ease-in-out;
+  border: 1px solid var(--color-border, #bbb);
+}
+
+.link:hover,
+.link:focus {
+  background: var(--color-bg-hover, #e6e6e6);
+  color: var(--color-text);
+  text-decoration: none;
+}

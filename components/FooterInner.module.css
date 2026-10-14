@@ -1,0 +1,170 @@
+/* ─── Footer Inner Layout ──────────────────────────────────────────────────── */
+
+.footerInner {
+  display: grid;
+  gap: 2.5rem;
+}
+
+@media only screen and (min-width: 768px) {
+  .footerInner {
+    grid-template-columns: repeat(12, 1fr);
+  }
+}
+
+/* ─── Brand Column ─────────────────────────────────────────────────────────── */
+
+.footerColumnBrand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+@media only screen and (min-width: 768px) {
+  .footerColumnBrand {
+    grid-column: span 4;
+    align-items: flex-start;
+  }
+}
+
+/* ─── Logo ─────────────────────────────────────────────────────────────────── */
+
+.logoLink {
+  display: block;
+  height: 4rem;
+}
+
+@media only screen and (min-width: 768px) {
+  .logoLink {
+    height: 5.5rem;
+  }
+}
+
+.logoLink:focus-visible {
+  outline: 0;
+  box-shadow:
+    var(--color-bg, #fff) 0px 0px 0px 2px,
+    var(--color-text, #000) 0px 0px 0px 5px;
+}
+
+.logoImg {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: left;
+}
+
+@media print {
+  .logoImg {
+    filter: invert(100%);
+  }
+}
+
+.socialLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+@media only screen and (min-width: 768px) {
+  .socialLinks {
+    justify-content: flex-start;
+  }
+}
+
+.socialLink {
+  background: #f2eff8;
+  border: 0;
+  color: #0b0c0c;
+  text-decoration: none;
+  transition:
+    background 0.2s ease-in-out,
+    color 0.2s ease-in-out;
+  display: inline-grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  aspect-ratio: 1 / 1;
+  border-radius: 2.75rem;
+}
+
+.socialLink:hover,
+.socialLink:focus {
+  background: #d5cce8;
+  color: #212529;
+  text-decoration: none;
+}
+
+/* ─── Navigation Column ────────────────────────────────────────────────────── */
+
+.footerColumnNavigation {
+  border-top: 1px solid #222256;
+  padding-top: 2.5rem;
+}
+
+@media only screen and (min-width: 768px) {
+  .footerColumnNavigation {
+    grid-column: span 8;
+    border-top: 0;
+    padding-top: 0;
+    display: flex;
+    align-items: center;
+  }
+  .footerColumnNavigation nav {
+    flex: 1; /* let nav grow to fill remaining space */
+    width: 100%; /* fallback / belt-and-suspenders */
+  }
+}
+
+/* ─── Footer Navigation Links ──────────────────────────────────────────────── */
+
+.footerLinks {
+  text-align: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: clamp(0.875rem, 0.724rem + 0.431vi, 1rem);
+  line-height: 1.5rem;
+  font-weight: 400;
+  width: 100%;
+}
+
+@media only screen and (min-width: 768px) {
+  .footerLinks {
+    text-align: left;
+    columns: 2 auto;
+    column-gap: 2.75rem;
+  }
+}
+
+.footerLinksItem {
+  height: fit-content;
+  display: block;
+}
+
+.footerLinksItem + .footerLinksItem {
+  margin-top: 0.5rem;
+}
+
+.footerLink {
+  color: var(--color-text, #0b0c0c);
+  text-decoration: underline;
+  text-underline-offset: 0.25rem;
+  display: block;
+  padding-block: 0.625rem;
+  transition:
+    color 0.2s ease-in-out,
+    text-underline-offset 0.2s ease-in-out;
+}
+
+.footerLink:hover,
+.footerLink:focus {
+  color: #003078;
+  text-underline-offset: 0.35rem;
+}

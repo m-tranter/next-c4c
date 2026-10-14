@@ -1,0 +1,99 @@
+/* ─── Page Feedback ────────────────────────────────────────────────────────── */
+
+.pageFeedbackHeader {
+  background: var(--color-s2-bg);
+}
+
+.pageFeedbackInner {
+  gap: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@media only screen and (min-width: 768px) {
+  .pageFeedbackInner {
+    justify-content: flex-start;
+    flex-direction: row;
+  }
+}
+
+.pageFeedbackTitle {
+  font-size: 1.125rem;
+  line-height: clamp(1.5rem, 0.897rem + 1.724vi, 2rem);
+  font-weight: 700;
+  color: #fff;
+}
+
+.pageFeedbackToggle {
+  font-size: clamp(0.875rem, 0.724rem + 0.431vi, 1rem);
+  font-weight: 500;
+  background: #fff;
+  color: #0b0c0c;
+  border: 0;
+  border-radius: 0.25rem;
+  padding: 0.5rem 0.875rem;
+  min-height: 2.75rem;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+.pageFeedbackToggle:hover,
+.pageFeedbackToggle:focus {
+  background: #e6e6e6;
+}
+
+.pageFeedbackToggle:focus-visible {
+  outline: 0;
+  box-shadow:
+    var(--color-s2-bg) 0px 0px 0px 2px,
+    #fff 0px 0px 0px 5px;
+}
+
+.pageFeedbackToggleOpen {
+  padding: 0;
+  width: 2.75rem;
+  border-radius: 2.75rem;
+}
+
+/* Animated expand/collapse using grid trick */
+.feedbackForm {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease-in-out;
+}
+
+.feedbackFormInner {
+  overflow: hidden;
+  padding-block: 0;
+  transition: padding-block 0.3s ease-in-out;
+}
+
+.feedbackFormOpen {
+  grid-template-rows: 1fr;
+}
+
+.feedbackFormOpen .feedbackFormInner {
+  padding-block: 2rem;
+}
+
+@media only screen and (min-width: 1024px) {
+  .feedbackFormOpen .feedbackFormInner {
+    padding-block: 1rem;
+  }
+}
+
+/* ─── Footer Outer ─────────────────────────────────────────────────────────── */
+
+.footerOuter {
+  background: #fff;
+}
+
+@media print {
+  .footerOuter {
+    display: none;
+  }
+}

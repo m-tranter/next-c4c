@@ -1,0 +1,63 @@
+/* Panel component styles - migrated from styled components */
+
+.panel {
+  background: var(--color-bg, #f2eff8);
+  padding-block: 1.5rem;
+  padding-inline: 1rem 1.5rem;
+  border-left: 0.5rem solid;
+  border-radius: 0 0.25rem 0.25rem 0;
+  margin-bottom: 2rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.panel.info {
+  border-color: var(--color-info, #1d70b8);
+}
+
+.panel.warning {
+  border-color: var(--color-warning, #f5b223);
+}
+
+.panel.note {
+  border-color: var(--color-note, #b1b4b6);
+}
+
+.panel.success {
+  border-color: var(--color-success, #43ccc1);
+}
+
+.panel.error {
+  border-color: var(--color-error, #d4351c);
+}
+
+.icon {
+  transform: translateY(0.25rem);
+}
+
+.content {
+  flex: 1;
+}
+
+.panel p {
+  font-size: clamp(1rem, 0.849rem + 0.431vi, 1.125rem);
+  line-height: 2rem;
+  font-weight: 400;
+  font-family: var(--font-body, Inter, sans-serif);
+  color: var(--color-text, #212529);
+  margin: 0;
+}
+
+@media print {
+  .panel {
+    background: transparent;
+    border: 1px solid #666;
+    border-left: 0.2cm solid #000;
+    padding-inline: 0.5cm;
+    break-inside: avoid;
+  }
+}
+
+.svg {
+  transform: translateY(0.25rem);
+}
